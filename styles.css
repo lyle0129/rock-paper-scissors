@@ -1,0 +1,51 @@
+/* *{
+    outline: 2px solid red ;
+} */
+
+
+
+#container{
+
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    flex-direction: column;
+    background-color: aqua;
+    height:500px;
+}
+
+.titleHeader{
+    flex:1 1 10px;
+    align-self: center;
+    background-color: ;
+    text-align: center;
+}
+
+.displayText{
+    display:flex;
+    flex:8 1 100px;
+    height: 350px;
+    align-self: center;
+    text-align: center;
+    margin-bottom: 10px;
+    outline: 1px solid black;
+    flex-direction: row;
+}
+
+.centerConsole{
+    flex:3 1 300px;
+}
+
+.btns{
+    flex:1 1 100px;
+    display: flex;
+    justify-content: center;
+    gap:10px;
+    
+}
+
+button{
+    height: 100px;
+    width: 100px;
+    background-color: antiquewhite;
+}
