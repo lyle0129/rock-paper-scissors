@@ -12,18 +12,29 @@ document.addEventListener("DOMContentLoaded", () => {
     let computerScore = 0;
     const maxScore = 5;
 
+    const divReset = document.getElementsByClassName('reset')[0];
+    const divSelectionBTNS = document.getElementsByClassName('btns')[0];
+
     buttons.forEach(button => {
         button.addEventListener("click", () => {
-            const playerChoice = button.dataset.choice;
-            const computerChoice = getComputerChoice();
-            const result = getResult(playerChoice, computerChoice);
+            if ((playerScore < maxScore) && (computerScore < maxScore)){
+                const playerChoice = button.dataset.choice;
+                console.log(playerChoice);
+                const computerChoice = getComputerChoice();
+                const result = getResult(playerChoice, computerChoice);
 
-            playerDisplay.textContent = `Player: ${capitalize(playerChoice)}`;
-            computerDisplay.textContent = `Computer: ${capitalize(computerChoice)}`;
-            resultDisplay.textContent = result;
+                playerDisplay.textContent = `Player: ${capitalize(playerChoice)}`;
+                computerDisplay.textContent = `Computer: ${capitalize(computerChoice)}`;
+                resultDisplay.textContent = result;
 
-            updateScore();
-
+                updateScore();
+            } else {
+                const resetBTN = button.dataset.reset;
+                resetVariables(resetBTN);
+                divSelectionBTNS.style.backgroundColor = "red";
+            }
+            
+            
         });
     });
 
@@ -49,11 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function updateScore() {
-        // if (result === "You Win!") {
-        //     playerScore++;
-        // } else if (result === "You Lose!") {
-        //     computerScore++;
-        // }
 
         playerScoreDisplay.textContent = `Score: ${playerScore}`;
         computerScoreDisplay.textContent = `Score: ${computerScore}`;
@@ -61,18 +67,31 @@ document.addEventListener("DOMContentLoaded", () => {
         if ((playerScore == maxScore) || (computerScore == maxScore)){
             resultDisplay.textContent = "Game over" ;
             if (playerScore > computerScore){
-                playerDisplay.textContent = "";
-                computerDisplay.textContent = "";
+                playerDisplay.textContent = "Player";
+                computerDisplay.textContent = "Computer";
                 playerScoreDisplay.textContent = "WINNER";
                 computerScoreDisplay.textContent = "LOSER";
             } else {
-                playerDisplay.textContent = "";
-                computerDisplay.textContent = "";
+                playerDisplay.textContent = "Player";
+                computerDisplay.textContent = "Computer";
                 playerScoreDisplay.textContent = "LOSER";
                 computerScoreDisplay.textContent = "WINNER";
-            }
-        }
+            }   
+            divReset.style.display = "block";
 
+        }
+    }
+
+    function resetVariables(ret){
+
+        if (ret === "reset"){
+            playerScore = 0;
+            computerScore = 0;
+            playerScoreDisplay.textContent = `Score: ${playerScore}`;
+            computerScoreDisplay.textContent = `Score: ${computerScore}`;
+            resultDisplay.textContent = `Make your move`;
+            divReset.style.display = "none";
+        }
     }
 
     function capitalize(word) {
