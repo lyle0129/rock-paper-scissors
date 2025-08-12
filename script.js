@@ -13,13 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const maxScore = 5;
 
     const divReset = document.getElementsByClassName('reset')[0];
-    const divSelectionBTNS = document.getElementsByClassName('btns')[0];
 
     buttons.forEach(button => {
         button.addEventListener("click", () => {
             if ((playerScore < maxScore) && (computerScore < maxScore)){
                 const playerChoice = button.dataset.choice;
-                console.log(playerChoice);
                 const computerChoice = getComputerChoice();
                 const result = getResult(playerChoice, computerChoice);
 
@@ -31,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 const resetBTN = button.dataset.reset;
                 resetVariables(resetBTN);
-                divSelectionBTNS.style.backgroundColor = "red";
             }
             
             
